@@ -6,29 +6,29 @@
 /*   By: vahanak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:44:41 by vahanak           #+#    #+#             */
-/*   Updated: 2023/10/18 15:14:27 by vahanak          ###   ########.fr       */
+/*   Updated: 2023/10/22 18:30:32 by vahanak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int size)
+unsigned int	ft_strlcpy(char *dst, const char *src, unsigned int size)
 {
-	int	free_size;
-	int	src_long;
+	unsigned int	i;
 
-	src_long = ft_strlen(src);
+	i = 0;
+	if (!size)
+		return (ft_strlen(src));
 	if (size > 0)
 	{
-		free_size = size - 1;
-		while (*src && free_size > 0)
+		while (--size && src[i])
 		{
-			*dest = *src;
-			dest++;
-			src++;
-			free_size--;
+			dst[i] = src[i];
+			i++;
 		}
-		*dest = '\0';
+		dst[i] = '\0';
 	}
-	return (src_long);
+	while (src[i])
+		i++;
+	return (i);
 }

@@ -5,65 +5,82 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vahanak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 10:52:25 by vahanak           #+#    #+#             */
-/*   Updated: 2023/10/19 12:34:26 by vahanak          ###   ########.fr       */
+/*   Created: 2023/10/22 16:38:29 by vahanak           #+#    #+#             */
+/*   Updated: 2023/10/22 18:23:57 by vahanak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libft.h"
 
-static int
-	ft_abs(int nbr)
+int	ft_count_nbr(long int n)
 {
-	return ((nbr < 0) ? -nbr : nbr);
-}
+	int	i;
 
-static void
-	ft_strrev(char *str)
-{
-	size_t	length;
-	size_t	i;
-	char	tmp;
-
-	length = ft_strlen(str);
 	i = 0;
-	while (i < length / 2)
+	if (n < 0)
 	{
-		tmp = str[i];
-		str[i] = str[length - i - 1];
-		str[length - i - 1] = tmp;
+		n *= -1;
 		i++;
 	}
+	while (n > 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
 }
 
-char
-	*ft_itoa(int n)
+char	*ft_strnew(size_t size)
 {
 	char	*str;
-	int		is_neg;
-	size_t	length;
 
-	is_neg = (n < 0);
-	if (!(str = ft_calloc(11 + is_neg, sizeof(*str))))
+	str = (char *)malloc(sizeof(*str) * (size + 1));
+	if (!str)
 		return (NULL);
-	if (n == 0)
-		str[0] = '0';
-	length = 0;
-	while (n != 0)
-	{
-		str[length++] = '0' + ft_abs(n % 10);
-		n = (n / 10);
-	}
-	if (is_neg)
-		str[length] = '-';
-	ft_strrev(str);
+	ft_bzero(str, size + 1);
 	return (str);
+}
+
+char	*ft_itoa_bis(int count, char *res, long int nb, int i)
+{
+	while (count > i)
+	{
+		count--;
+		res[count] = (nb % 10) + '0';
+		nb /= 10;
+	}
+	return (res);
+}
+
+char	*ft_itoa(int n)
+{
+	long int	nb;
+	int			count;
+	int			i;
+	char		*res;
+
+	nb = n;
+	count = ft_count_nbr(nb);
+	i = 0;
+	if (count == 0)
+		count++;
+	res = ft_strnew(count);
+	if (!res)
+		return (NULL);
+	if (nb < 0)
+	{
+		nb *= -1;
+		res[0] = '-';
+		i++;
+	}
+	res[count] = '\0';
+	res = ft_itoa_bis(count, res, nb, i);
+	return (res);
 }
 /*
 int	main(void)
 {
-	printf("%s", ft_itoa(-87693847));
+	printf("%s", ft_itoa(11111123));
 	return (0);
 }
 */

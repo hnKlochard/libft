@@ -6,7 +6,7 @@
 /*   By: vahanak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:13:04 by vahanak           #+#    #+#             */
-/*   Updated: 2023/10/19 15:25:08 by vahanak          ###   ########.fr       */
+/*   Updated: 2023/10/22 18:19:02 by vahanak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*newstr;
-	int		i;
+	char			*newstr;
+	unsigned int	i;
 
 	if (!s || !f)
 		return (NULL);

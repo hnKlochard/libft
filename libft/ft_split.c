@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vahanak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 15:25:47 by vahanak           #+#    #+#             */
-/*   Updated: 2023/10/19 15:26:53 by vahanak          ###   ########.fr       */
+/*   Created: 2023/10/22 12:22:01 by vahanak           #+#    #+#             */
+/*   Updated: 2023/10/22 18:16:20 by vahanak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,23 @@ char	**ft_split(char const *s, char c)
 /*
 int	main(void)
 {
-	printf("%s", *ft_split("salut-ca-va", '-'));
+	int	i;
+	int	j;
+	char	**res = ft_split("salut--ca-va", '-');
+	
+	i = 0;
+	j = 0;
+	while (res[i][j])
+	{
+		printf("%c", res[i][j]);
+		j++;
+		if (j == '\0')
+		{
+			i++;
+			j = 0;
+			printf("\n");
+		}
+	}
 	return (0);
 }
 */

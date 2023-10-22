@@ -6,7 +6,7 @@
 #    By: vahanak <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 11:31:49 by vahanak           #+#    #+#              #
-#    Updated: 2023/10/19 16:37:22 by vahanak          ###   ########.fr        #
+#    Updated: 2023/10/22 15:09:00 by vahanak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ ft_putstr_fd \
 ft_putendl_fd \
 ft_putnbr_fd 
 
+
 SRCS = $(addsuffix .c,$(SRC))
 OBJ = $(addsuffix .o,$(SRC))
 
@@ -61,11 +62,29 @@ $(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) $(OPTION) $(SRCS) 
 	ar -rcs $(NAME) $(OBJ) $(HEADER_FILE)
 
+SRC_BONUS = ft_lstnew \
+ft_lstadd_front \
+ft_lstsize \
+ft_lstlast \
+ft_lstadd_back \
+ft_lstdelone \
+ft_lstclear \
+ft_lstiter \
+ft_lstmap
+
+
+SRCS_BONUS = $(addsuffix .c,$(SRC_BONUS))
+OBJ_BONUS = $(addsuffix .o,$(SRC_BONUS))
+
+bonus : $(OBJ_BONUS)
+	$(CC) $(C0FLAGS) $(OPTION) $(SRCS_BONUS) 
+	ar -rcs $(NAME) $(OBJ_BONUS) $(HEADER_FILE)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJ_BONUS)
 
 fclean: clean
 	rm -f $(NAME)
